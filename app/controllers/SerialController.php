@@ -11,7 +11,7 @@ require __DIR__ . '/../models/Serial.php';
 		if($serials){
 			return $serials;
 		}else{
-			echo'Сериалы отсутствуют';
+			return;
 		}
 	}
 	public function serial($serial_id){
@@ -19,7 +19,7 @@ require __DIR__ . '/../models/Serial.php';
 		 if($serial){
 			return $serial;
 		 }else{
-			echo'Сериал отсутствует';
+			return;
 		 }
 		}
 

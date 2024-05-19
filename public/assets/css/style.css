@@ -133,7 +133,7 @@ body{
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-.star-img{
+.regular-star-img, .solid-star-img{
 	position: relative;
 	cursor: pointer;
 	content: "Ваша подсказка здесь";
@@ -151,7 +151,7 @@ body{
 	cursor: pointer;
 }
 
-.star-img::after {
+.regular-star-img::after {
 	content: "Добавить в избранное";
 	position: absolute;
 	top: 100%;
@@ -164,8 +164,21 @@ body{
 	opacity: 0;
 	transition: opacity 0.3s ease-in-out;
 }
+.solid-star-img::after {
+	content: "Удалить из избранного";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #333;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
 
-.star-img:hover::after {
+.regular-star-img:hover::after,.solid-star-img:hover::after {
 	opacity: 1;
 }
 

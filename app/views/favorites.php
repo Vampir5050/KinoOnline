@@ -15,6 +15,12 @@ $success = $_GET["success"] ?? null;
 if($user){
 	$favouritesController = new FavouritesController($pdo);
 	$favourites = $favouritesController->favourites($user['id']);	
+	if($favourites){
+		$num = (count($favourites));
+	}
+	else{
+		$num = 0;
+	}
 }
 
 
@@ -50,7 +56,7 @@ if($user){
 	</a>
 	<ul class="dropdown-menu">
 				<li><a href="#"><i class="fa-solid fa-gear"></i></i><span>&#32 Профиль</span></a></li>
-				<li><a href="#"><i class="fa-solid fa-heart"></i><span>&#32 Избранное</span></a>
+				<li><a href="#"><i class="fa-solid fa-heart"></i><span>&#32 Избранное('.$num.')</span></a>
 				<li><a href="/../public/index.php?controller=user&action=logout"><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i><span>&#32 Выйти</span></a>
 				</li>
 	</ul>';
@@ -75,7 +81,7 @@ if($user){
 						foreach($favourites as $favourite){
 							if($favourite['name_serial']!=null)
 							{
-								echo '<div class="image-container"><a href="/details.php?serial_id='.$serial['id'].'"><img class="poster" src="'. $favourite['poster_serial']. '" alt="Постер фильма"></a>
+								echo '<div class="image-container"><a href="/details.php?serial_id='.$favourite['serial_id'].'"><img class="poster" src="'. $favourite['poster_serial']. '" alt="Постер фильма"></a>
 							 		<p class="overlay-text">'. $favourite['name_serial'].'</p></div>';
 							}
 							if($favourite['name_film']!=null){
@@ -83,7 +89,7 @@ if($user){
 							 		<p class="overlay-text">'. $favourite['name_film'].'</p></div>';
 						}
 						    
-						}
+					}
 						
 					}
 					?>

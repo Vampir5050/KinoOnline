@@ -7,6 +7,7 @@ $user_id = $_SESSION['user_id'] ?? null;
 require_once 'app/config/db.php';
 require_once 'app/controllers/UserController.php';
 require_once 'app/controllers/SerialController.php';
+require_once 'app/controllers/FavouritesController.php';
 
 $userController = new UserController($pdo);
 $user = $userController->profile($user_id);
@@ -17,6 +18,16 @@ $success = $_GET["success"] ?? null;
 $serialController = new SerialController($pdo);
 $serials = $serialController->serials();
 
+if($user){
+	$favouritesController = new FavouritesController($pdo);
+	$favourites = $favouritesController->favourites($user['id']);	
+	if($favourites){
+		$num = (count($favourites));
+	}
+	else{
+		$num = 0;
+	}
+}
 
 
 
@@ -47,7 +58,7 @@ $serials = $serialController->serials();
 	</a>
 	<ul class="dropdown-menu">
 				<li><a href="#"><i class="fa-solid fa-gear"></i></i><span>&#32 Профиль</span></a></li>
-				<li><a href="/app/views/favorites.php"><i class="fa-solid fa-heart"></i><span>&#32 Избранное</span></a>
+				<li><a href="/app/views/favorites.php"><i class="fa-solid fa-heart"></i><span>&#32 Избранное('. $num.')</span></a>
 				<li><a href="/public/index.php?controller=user&action=logout"><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i><span>&#32 Выйти</span></a>
 				</li>
 	</ul>';
