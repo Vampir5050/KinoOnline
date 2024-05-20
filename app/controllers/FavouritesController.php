@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../models/favourites.php';
+use Illuminate\Http\Request;
 
 	class FavouritesController{
 		private $favouritesModel;
@@ -11,29 +12,51 @@ require __DIR__ . '/../models/favourites.php';
 		if($favourites){
 			return $favourites;
 		}else{
-			echo'В избранном ничего нет';
+		  return;
 
 		}
 	}
-	public function film($user_id,$film_id){
-		$favouritesFilm = $this->favouritesModel->checkFilm($user_id,$film_id);
-		if($favouritesFilm['film_id']==null){
-			$favouritesFilm = $this->favouritesModel->addFilm($user_id,$film_id);
+	public function film($userId, $movieId){
+		$favouritesFilm = $this->favouritesModel->checkFilm($userId,$movieId);
+		if($favouritesFilm===null){
+			$favouritesFilm = $this->favouritesModel->addFilm($userId,$movieId);
+			$responseData = [
+				'status' => 'success',
+				'message' => 'Фильм успешно добавлен в избранное!'
+			];
+			header('Content-Type: application/json');
+         	echo json_encode($responseData);
+		}else{
+			$favouritesFilm = $this->favouritesModel->delFilm($userId,$movieId);
+			$responseData = [
+				'status' => 'success',
+				'message' => 'Фильм успешно удален из избранного!'
+			];
+			header('Content-Type: application/json');
+            echo json_encode($responseData);
 		}
-		else{
-			$favouritesFilm = $this->favouritesModel->delFilm($user_id,$film_id);
-		}
-		return $favouritesFilm;
+		
 		
 	}
-	public function serial($user_id,$serial_id){
-		$favouritesFilm = $this->favouritesModel->checkSerial($user_id,$serial_id);
-		if($favouritesFilm['serial_id']==null){
-				$favouritesFilm = $this->favouritesModel->addSerial($user_id,$serial_id);
+	public function serial($userId,$serialId){
+		$favouritesFilm = $this->favouritesModel->checkSerial($userId,$serialId);
+		if($favouritesFilm===null){
+			$favouritesFilm = $this->favouritesModel->addSerial($userId,$serialId);
+			$responseData = [
+				'status' => 'success',
+				'message' => 'Сериал успешно добавлен в избранное!'
+			];
+			header('Content-Type: application/json');
+         	echo json_encode($responseData);
+		}else{
+			$favouritesFilm = $this->favouritesModel->delSerial($userId,$serialId);
+			$responseData = [
+				'status' => 'success',
+				'message' => 'Сериал успешно удален из избранного!'
+			];
+			header('Content-Type: application/json');
+            echo json_encode($responseData);
 		}
-		else{
-			$favouritesFilm = $this->favouritesModel->delFilm($user_id,$serial_id);
-		}return $favouritesFilm;
 
 	}
 

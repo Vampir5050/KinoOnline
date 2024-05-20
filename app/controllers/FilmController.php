@@ -11,7 +11,7 @@ require __DIR__ . '/../models/Film.php';
 		if($films){
 			return $films;
 		}else{
-			echo'Фильмы отсутствуют';
+			return;
 		}
 	}
 	public function film($film_id){
@@ -19,7 +19,7 @@ require __DIR__ . '/../models/Film.php';
 		 if($film){
 			return $film;
 		 }else{
-			echo'Фильм отсутствует';
+			return;
 		 }
 
 	}

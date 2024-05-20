@@ -14,7 +14,8 @@ CREATE TABLE films(
 	ganre VARCHAR(255) NOT NULL,
 	year_release YEAR NOT NULL,
 	country VARCHAR(255) NOT NULL,
-	poster_film VARCHAR(255) NOT NULL
+	poster_film VARCHAR(255) NOT NULL,
+	link_film VARCHAR(255) NULL
 );
 
 CREATE TABLE serials(

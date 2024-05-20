@@ -5,7 +5,7 @@ session_start();
 require_once '../app/config/db.php';
 
 $action = $_GET['action'] ?? null;
-$controller = $_GET['controller'] ?? 'user' ?? 'film';
+$controller = $_GET['controller'] ?? 'user' ?? 'favourites';
 
 switch($controller) {
     case 'user':
@@ -42,10 +42,29 @@ switch($controller) {
                 header("Location: login.php");
                 break;
         }
-    	default:
+    	
+	case 'favourites': {
+    require_once '../app/controllers/FavouritesController.php';
+    $favouritesController = new FavouritesController($pdo);
+    switch ($action) {
+        case 'film':
+            $userId = $_POST['user_id'];
+            $filmId = $_POST['film_id'];
+            $favouritesController->film($userId, $filmId);
+            break;
+		case 'serial':
+			$userId = $_POST['user_id'];
+            $serialId = $_POST['serial_id'];
+            $favouritesController->serial($userId, $serialId);
+            break;
+    }
+    break;
+
+	}
+	default:
         echo "Контроллер не найден";
         break;
-		
+
 
 			
 }
