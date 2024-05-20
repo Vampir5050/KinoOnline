@@ -40,7 +40,7 @@ if($user){
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/public/assets/css/style.css">
-	<title>Document</title>
+	<title>Фильмы</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@ if($user){
 	echo '<img class="avatar" src="'. $user['avatar']. '" alt="Аватар пользователя">
 	</a>
 	<ul class="dropdown-menu">
-				<li><a href="#"><i class="fa-solid fa-gear"></i></i><span>&#32 Профиль</span></a></li>
+				<li><a href="/app/views/profile.php"><i class="fa-solid fa-gear"></i></i><span>&#32 Профиль</span></a></li>
 				<li><a href="/app/views/favorites.php"><i class="fa-solid fa-heart"></i><span>&#32 Избранное('.$num.')</span></a>
 				<li><a href="/public/index.php?controller=user&action=logout"><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i><span>&#32 Выйти</span></a>
 				</li>

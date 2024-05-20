@@ -130,7 +130,7 @@ body{
 .details {
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 10%;
 	transform: translate(-50%, -50%);
 }
 .regular-star-img, .solid-star-img{
@@ -139,7 +139,7 @@ body{
 	content: "Ваша подсказка здесь";
 	position: absolute;
 		top: 3%;
-		left: 90%;
+		left: 70%;
 		transform: translate(-50%, -50%);
 		color: #f50000;
 		padding: 10px 20px;
@@ -180,6 +180,19 @@ body{
 
 .regular-star-img:hover::after,.solid-star-img:hover::after {
 	opacity: 1;
+}
+.watch{
+	position: absolute;
+	left: 35%;
+}
+.profile{
+	display: flex;
+	position: absolute;
+	top: 12%;
+	left:25%;
+}
+.user{
+	margin-left: 30px;
 }
 
 

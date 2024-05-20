@@ -40,7 +40,7 @@ class UserController {
         if ($user) {
             return $user;
         } else {
-            echo "Пользователь не найден";
+			return;
         }
     }
 
